@@ -1,0 +1,36 @@
+port: 3333
+socks-port: 23456
+redir-port: 23457
+allow-lan: true
+mode: global
+log-level: error
+external-controller: 192.168.50.1:9990
+experimental:
+  ignore-resolve-fail: true
+external-ui: dashboard
+secret: "clash"
+profile:
+  store-selected: true
+ipv6: false
+
+hosts:
+  router.asus.com: 192.168.50.1
+  services.googleapis.cn: 74.125.193.94
+
+dns:
+  enable: true
+  ipv6: false
+  listen: :23453
+  enhanced-mode: redir-host 
+  nameserver:
+    - https://223.5.5.5/dns-query
+    - tls://101.101.101.101:853
+    - https://doh.pub/dns-query
+  fallback:
+    - https://doh.dns.sb/dns-query
+    - tcp://208.67.222.222:443
+    - tls://dns.google
+  fallback-filter:
+    geoip: true
+    ipcidr:
+      - 240.0.0.0/4 
